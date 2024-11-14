@@ -77,3 +77,41 @@ let textBox: UIWidget = {
   drag: () => {},
   resize: () => {},
 };
+
+// Literal types
+type Quantity = 50 | 100;
+let quantity: Quantity = 50;
+
+type UnitLength = "cm" | "inch";
+let unitLength: UnitLength = "cm";
+
+// Nullable types
+function greet(name: string | null | undefined) {
+  if (typeof name === "string") console.log(name.toUpperCase());
+  else console.log("name is null or undefined");
+}
+
+greet(null);
+
+// mekedi wenne name ekata waradimakin null value ekak parse unoth name eke toUpperCase() methos eka wada karanne nh.
+// anith eka program eka crash wennath puluwn
+// error ekak enawa. ekata karanne api Union use karana eka.
+
+// ---Optional Chainings ---
+type Customer = {
+  birthday?: Date;
+};
+
+let getCustomer = (id: number): Customer | null | undefined => {
+  return id === 0 ? null : { birthday: new Date() };
+};
+
+let customer = getCustomer(0);
+
+console.log(customer?.birthday?.getFullYear());
+
+// Optional element access
+// customers?.[0]
+// Optional call
+let log: any = null;
+log?.("a");
